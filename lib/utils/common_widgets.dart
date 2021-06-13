@@ -36,9 +36,44 @@ roundShapeEditText(
       controller: myController,
       maxLength: 10,
       validator: (value) {
-        return value.isEmpty ? 'Please enter $hintText' : value.length < 3 || value.length > 10 ? "$hintText's length should be min 3 and max 10 characters" : null;
+        return value.isEmpty ? 'Please enter $hintText' : value.length < 3 || value.length > 10 ? "$hintText's length should be min 3 and max 10 characters" : value != "9898989898" ? "Invalid $hintText" : null;
       },
       keyboardType: type,
+    ),
+  );
+}
+
+roundShapeEditTextPassword(
+    {BuildContext context,
+      String hintText,
+      TextEditingController myController,
+      TextInputType type,
+      bool isValidate
+      }) {
+  return Container(
+    width: MediaQuery.of(context).size.width - 20,
+    child: TextFormField(
+      decoration: new InputDecoration(
+        focusColor: bgColor,
+        hoverColor: bgColor,
+          border: new OutlineInputBorder(
+            borderRadius: const BorderRadius.all(
+              const Radius.circular(30.0),
+            ),
+          ),
+          filled: true,
+          hintStyle: new TextStyle(color: Colors.black45),
+          hintText: hintText,
+          fillColor: Colors.white70,
+          contentPadding:
+          EdgeInsets.symmetric(vertical: 15.0, horizontal: 15.0)),
+      controller: myController,
+      maxLength: 10,
+      validator: (value) {
+        return value.isEmpty ? 'Please enter $hintText' : value.length < 3 || value.length > 10 ? "$hintText's length should be min 3 and max 10 characters" : value != "pass123" ? "Invalid $hintText": null;
+      },
+      keyboardType: type,
+      obscureText: true,
     ),
   );
 }

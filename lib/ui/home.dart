@@ -31,21 +31,24 @@ class _HomeState extends State<Home> {
         model: appModel,
               child: ScopedModelDescendant<AppModel>(builder: (context, child, model) {
           return !appModel.loading && appModel.getTournament != null
-              ? Container(
-                  child: ListView.builder(
-                      itemCount: appModel.getTournamentsList.length,
-                      itemBuilder: (context, position) {
-                        return buildRoundShapeCardWidget(
-                            child: _buildChildLayout(
-                                appModel.getTournamentsList[position]),
-                            color: Colors.white,
-                            height: 140,
-                            radius: 20,
-                          );
-                      }),
-                )
+              ? Padding(
+                padding: const EdgeInsets.only(left: 8,right: 8),
+                child: Container(
+                    child: ListView.builder(
+                        itemCount: appModel.getTournamentsList.length,
+                        itemBuilder: (context, position) {
+                          return buildRoundShapeCardWidget(
+                              child: _buildChildLayout(
+                                  appModel.getTournamentsList[position]),
+                              color: Colors.white,
+                              height: 140,
+                              radius: 20,
+                            );
+                        }),
+                  ),
+              )
               : Center(
-                  child: CircularProgressIndicator(),
+                  child: CircularProgressIndicator(backgroundColor: baseColor,),
                 );
         }),
       ),
@@ -82,11 +85,12 @@ class _HomeState extends State<Home> {
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
                       buildSpaceWidget(height: 5.0),
           buildBoldTextWidget(text: tournamentsList.tournamentType,fontSize: normalText),
-          buildSpaceWidget(height: 5.0),
-          buildTextWidget(text: tournamentsList.adminUsername,fontSize: normalText)
+          buildSpaceWidget(height: 2.0),
+          buildTextWidget(text: tournamentsList.gameName,fontSize: smallText)
             ],
           ),
         )

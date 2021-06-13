@@ -51,7 +51,7 @@ class TournamentsModel extends Model {
     return tournaments;
   }
 
-  String get getCityFaliureMessage {
+  String get getFaliureMessage {
     return _failureMessage;
   }
 
